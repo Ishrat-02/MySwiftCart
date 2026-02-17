@@ -12,6 +12,33 @@ let cart = [];
 // Close modal
 closeBtn.onclick = () => modal.classList.add("hidden");
 
+// SPA Navigation
+function navigateTo(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+    document.getElementById('page-' + page).classList.remove('hidden');
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === page) {
+            link.classList.add('active');
+        }
+    });
+    window.scrollTo(0, 0);
+    if (page === 'products' && document.getElementById('products').innerHTML === '') {
+        loadCategories();
+        loadProducts('all');
+    }
+}
+
+// Nav link clicks
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo(link.dataset.page);
+        });
+    });
+});
+
 // Load categories
 function loadCategories() {
     fetch(`${API_BASE}/products/categories`)
@@ -123,6 +150,5 @@ function addToCart(id, title, price) {
     document.getElementById('cart-count').innerText = cart.length;
 }
 
-// Initial load
-loadCategories();
+// Initial load — only trending for home page
 loadTrending();

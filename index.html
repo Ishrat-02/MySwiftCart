@@ -13,100 +13,190 @@
     <nav class="navbar">
         <div class="logo">SwiftCart</div>
         <div class="menu">
-            <a href="#">Home</a>
-            <a href="#">Products</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#" class="nav-link active" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="products">Products</a>
+            <a href="#" class="nav-link" data-page="about">About</a>
+            <a href="#" class="nav-link" data-page="contact">Contact</a>
         </div>
         <div class="cart">🛒 <span id="cart-count">0</span></div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Best Collection For You</h1>
-            <p>Discover the latest trends in fashion, electronics, and more. Shop with confidence at SwiftCart.</p>
-            <button>Shop Now</button>
-        </div>
-    </section>
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page">
 
-    <!-- Why Choose Us -->
-    <section class="features">
-        <h2>Why Choose Us</h2>
-        <p>We provide the best shopping experience with top-notch services.</p>
-        <div class="feature-cards">
-            <div class="feature-card">
-                <div class="icon">🚚</div>
-                <h3>Fast Delivery</h3>
-                <p>Get your orders delivered to your doorstep quickly and efficiently.</p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Best Collection For You</h1>
+                <p>Discover the latest trends in fashion, electronics, and more. Shop with confidence at SwiftCart.</p>
+                <button onclick="navigateTo('products')">Shop Now</button>
             </div>
-            <div class="feature-card">
-                <div class="icon">🎧</div>
-                <h3>24/7 Support</h3>
-                <p>Our support team is available around the clock to assist you.</p>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="features">
+            <h2>Why Choose Us</h2>
+            <p>We provide the best shopping experience with top-notch services.</p>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your orders delivered to your doorstep quickly and efficiently.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎧</div>
+                    <h3>24/7 Support</h3>
+                    <p>Our support team is available around the clock to assist you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>Secure Payment</h3>
+                    <p>Experience safe and secure transactions with our encrypted payment systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">↩️</div>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? Return your products easily within 30 days.</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="icon">🔒</div>
-                <h3>Secure Payment</h3>
-                <p>Experience safe and secure transactions with our encrypted payment systems.</p>
+        </section>
+
+        <!-- Trending Products -->
+        <section class="trending">
+            <h2>Trending Now</h2>
+            <p>Our top rated products loved by customers</p>
+            <div id="trending-products" class="product-grid"></div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with the latest deals and arrivals.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
             </div>
-            <div class="feature-card">
-                <div class="icon">↩️</div>
-                <h3>Easy Returns</h3>
-                <p>Not satisfied? Return your products easily within 30 days.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-left">
+                <h3>SwiftCart</h3>
+                <p>Your one-stop shop for all your fashion and lifestyle needs. Quality products, fast delivery, and excellent support.</p>
             </div>
-        </div>
-    </section>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="products">Products</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-support">
+                <h4>Support</h4>
+                <ul>
+                    <li>FAQ</li>
+                    <li>Shipping</li>
+                    <li>Returns</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+        </footer>
 
-    <!-- Trending Products -->
-    <section class="trending">
-        <h2>Trending Now</h2>
-        <p>Our top rated products loved by customers</p>
-        <div id="trending-products" class="product-grid"></div>
-    </section>
+    </div>
 
-    <!-- Categories + Products -->
-    <section class="categories">
-        <h2>Our Products</h2>
-        <div id="categories"></div>
-        <div id="products" class="product-grid"></div>
-    </section>
+    <!-- PRODUCTS PAGE -->
+    <div id="page-products" class="page hidden">
+        <section class="categories">
+            <h2>Our Products</h2>
+            <div id="categories"></div>
+            <div id="products" class="product-grid"></div>
+        </section>
+    </div>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <h3>Subscribe to Our Newsletter</h3>
-        <p>Stay updated with the latest deals and arrivals.</p>
-        <div class="newsletter-form">
-            <input type="email" placeholder="Enter your email">
-            <button>Subscribe</button>
-        </div>
-    </section>
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page hidden">
+        <section class="features">
+            <h2>Why Choose Us</h2>
+            <p>We provide the best shopping experience with top-notch services.</p>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your orders delivered to your doorstep quickly and efficiently.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎧</div>
+                    <h3>24/7 Support</h3>
+                    <p>Our support team is available around the clock to assist you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>Secure Payment</h3>
+                    <p>Experience safe and secure transactions with our encrypted payment systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">↩️</div>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? Return your products easily within 30 days.</p>
+                </div>
+            </div>
+            <div class="about-extra">
+                <h2>Our Story</h2>
+                <p>SwiftCart was founded to make online shopping fast, reliable, and enjoyable for everyone.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>10K+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Products</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Brands</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-left">
-            <h3>SwiftCart</h3>
-            <p>Your one-stop shop for all your fashion and lifestyle needs. Quality products, fast delivery, and excellent support.</p>
-        </div>
-        <div class="footer-links">
-            <h4>Quick Links</h4>
-            <ul>
-                <li>Home</li>
-                <li>Products</li>
-                <li>About</li>
-                <li>Contact</li>
-            </ul>
-        </div>
-        <div class="footer-support">
-            <h4>Support</h4>
-            <ul>
-                <li>FAQ</li>
-                <li>Shipping</li>
-                <li>Returns</li>
-                <li>Privacy Policy</li>
-            </ul>
-        </div>
-    </footer>
+    <!-- CONTACT PAGE -->
+    <div id="page-contact" class="page hidden">
+        <section class="contact-page">
+            <h2>Contact Us</h2>
+            <p class="contact-subtitle">We'd love to hear from you.</p>
+            <div class="contact-wrapper">
+                <div class="contact-form-box">
+                    <h3>Send a Message</h3>
+                    <form onsubmit="return false;">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info-box">
+                    <h3>Get In Touch</h3>
+                    <p>📧 support@swiftcart.com</p>
+                    <p>📞 +1 (800) 123-4567</p>
+                    <p>📍 123 Commerce St, New York, NY</p>
+                    <h3 style="margin-top: 30px;">Newsletter</h3>
+                    <p>Stay updated with our latest deals.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Modal -->
     <div id="modal" class="modal hidden">
