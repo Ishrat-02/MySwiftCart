@@ -14,7 +14,7 @@ Ans:==: মান তুলনা করে, টাইপ  দেখে না�
 
 
 4) What is the significance of async/await in fetching API data?
-Ans:
+Ans:async/await ব্যবহার করলে আমরা API থেকে data আনার সময় wait করতে পারি এবং কোডটা সহজে পড়া যায়।
 
 
 5) Explain the concept of Scope in JavaScript (Global, Function, Block).
