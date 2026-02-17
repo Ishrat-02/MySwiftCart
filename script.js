@@ -1,7 +1,16 @@
 const categoriesContainer = document.getElementById("categories");
 const productsContainer = document.getElementById("products");
 const trendingContainer = document.getElementById("trending-products");
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modal-body");
+const closeBtn = document.getElementById("close");
 const API_BASE = "https://fakestoreapi.com";
+
+// Cart
+let cart = [];
+
+// Close modal
+closeBtn.onclick = () => modal.classList.add("hidden");
 
 // Load categories
 function loadCategories() {
@@ -54,19 +63,22 @@ function loadProducts(category) {
                     <h4>${product.title.slice(0, 40)}...</h4>
                     <p class="price">$${product.price}</p>
                     <p class="rating">⭐ ${product.rating.rate} (${product.rating.count})</p>
+                    <div class="card-buttons">
+                        <button class="btn-details" onclick="showDetails(${product.id})">Details</button>
+                        <button class="btn-cart" onclick="addToCart(${product.id}, '${product.title.slice(0, 30)}', ${product.price})">Add to Cart</button>
+                    </div>
                 `;
                 productsContainer.appendChild(card);
             });
         });
 }
 
-// Trending products — top 3 by rating
+// Trending products — first 3
 function loadTrending() {
     fetch(`${API_BASE}/products`)
         .then(res => res.json())
         .then(data => {
-            const sorted = data.sort((a, b) => b.rating.rate - a.rating.rate);
-            sorted.slice(0, 3).forEach(product => {
+            data.slice(0, 3).forEach(product => {
                 const card = document.createElement("div");
                 card.classList.add("card");
                 card.innerHTML = `
@@ -75,10 +87,40 @@ function loadTrending() {
                     <h4>${product.title.slice(0, 40)}...</h4>
                     <p class="price">$${product.price}</p>
                     <p class="rating">⭐ ${product.rating.rate} (${product.rating.count})</p>
+                    <div class="card-buttons">
+                        <button class="btn-details" onclick="showDetails(${product.id})">Details</button>
+                        <button class="btn-cart" onclick="addToCart(${product.id}, '${product.title.slice(0, 30)}', ${product.price})">Add to Cart</button>
+                    </div>
                 `;
                 trendingContainer.appendChild(card);
             });
         });
+}
+
+// Show details modal
+function showDetails(id) {
+    modalBody.innerHTML = "<p class='loading'>Loading...</p>";
+    modal.classList.remove("hidden");
+
+    fetch(`${API_BASE}/products/${id}`)
+        .then(res => res.json())
+        .then(product => {
+            modalBody.innerHTML = `
+                <img src="${product.image}" width="120" alt="${product.title}" />
+                <h3>${product.title}</h3>
+                <span class="badge">${product.category}</span>
+                <p class="modal-desc">${product.description}</p>
+                <p class="price">Price: $${product.price}</p>
+                <p class="rating">⭐ ${product.rating.rate} (${product.rating.count} reviews)</p>
+                <button class="btn-cart" onclick="addToCart(${product.id}, '${product.title.slice(0, 30)}', ${product.price}); modal.classList.add('hidden')">Add to Cart</button>
+            `;
+        });
+}
+
+// Add to cart
+function addToCart(id, title, price) {
+    cart.push({ id, title, price });
+    document.getElementById('cart-count').innerText = cart.length;
 }
 
 // Initial load
